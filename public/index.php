@@ -12,5 +12,9 @@ require_once '../app/bootstrap.php';
 
 //echo 'hello world! ';
 
-# Init Core Library
-$init = new Core;
+# Init Core Library - I think symfony4 has the CoreController as public/index.php
+$init = new CoreController();
+
+//print "<pre>";
+//print_r($init);
+//print "</pre>";

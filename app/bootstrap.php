@@ -7,6 +7,6 @@
  */
 
 # Load Libraries (not case sensitive)
-require_once 'libraries/Core.php';
-require_once 'libraries/Controller.php';
-require_once 'libraries/Database.php';
+require_once 'libraries/CoreController.php';
+require_once 'libraries/BaseController.php';
+require_once 'libraries/DatabaseController.php';

@@ -6,7 +6,8 @@
  * Time: 15:27
  */
 
-class PagesController
+# Set PagesController to be the default Controller in CoreController
+class PagesController extends BaseController
 {
     public function __construct()
     {
@@ -17,7 +18,7 @@ class PagesController
     # for a method in URL (array element[1])
     public function index()
     {
-
+        $this->view('Hello');
     }
 
     public function about($id)

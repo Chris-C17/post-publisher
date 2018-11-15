@@ -7,7 +7,7 @@
 # This will look at urls and pull out arrays and decide
 # what controller/method to load
 
-class Core
+class CoreController
 {
     # If there are no other controllers then set default (Pages)Controller to load
     # The controllers and methods will change as the URL changes
