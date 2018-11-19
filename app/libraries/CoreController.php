@@ -1,6 +1,6 @@
 <?php
 /**
- * App Core Class
+ * App Core Class (was called Core.php before)
  * Creates URL and loads core controller
  * URL FORMAT - /controller/method/params
  */
@@ -59,13 +59,21 @@ class CoreController
                 call_user_func_array(
                     [$this->currentController, $this->currentMethod],
                     $this->params);
+
             }
+
+            # Adding an else statement because .htaccess doesn't work and I need the
+            # default controller, method and parameters to be called
+        } else { call_user_func_array(
+            [$this->currentController, $this->currentMethod],
+            $this->params);
         }
 
     }
 
-    # Note .htaccess isn't working so I need full url then ?url=
-    # http://localhost/mvc/public/index.php?url=chris
+    # Note .htaccess isn't working so I need full url to public/ then ?url=
+    # http://localhost/mvc/public/index.php?url=chris/about url[0] = Chris (Controller)
+    # ad url[1] = about (method), url[2+] = params
     # or from public http://localhost/mvc/public/?url=chris
     public function getUrl()
     {

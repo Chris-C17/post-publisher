@@ -18,11 +18,18 @@ class PagesController extends BaseController
     # for a method in URL (array element[1])
     public function index()
     {
-        $this->view('Hello');
+        # Using a pages directory in view so need to load pages/index
+        $data = [
+            'title' => 'Welcome!'
+        ];
+        $this->view('pages/index', $data);
     }
 
+    # Remember .htaccess isn't working so need awkward url with /mvc/public/?url=
+    # http://localhost/mvc/public/?url=pages/about/33
     public function about($id)
     {
+        $this->view('pages/about');
         echo "this is about in Pages and the id is ".$id;
     }
 }

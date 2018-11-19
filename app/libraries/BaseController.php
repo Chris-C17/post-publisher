@@ -1,6 +1,6 @@
 <?php
 /**
- * Base Controller
+ * Base Controller  (Was called Controller.php before)
  * loads the models and views
  * Every controller we use will extend this core controller
  */
