@@ -8,7 +8,7 @@
 
 # App Route - define app directory as a constant
 define('APPROOT', dirname(dirname(__FILE__)));
-# URL Root
+# URL Root (from the public folder of project)
 define('URLROOT', 'http://localhost/mvc/public');
 # Site Name
-define('SITENAME', 'MVC');
+define('SITENAME', 'Post Publisher');

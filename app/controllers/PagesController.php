@@ -29,7 +29,10 @@ class PagesController extends BaseController
     # http://localhost/mvc/public/?url=pages/about/33
     public function about($id)
     {
-        $this->view('pages/about');
+        $data = [
+            'title' => 'About Us'
+        ];
+        $this->view('pages/about', $data);
         echo "this is about in Pages and the id is ".$id;
     }
 }
