@@ -8,13 +8,13 @@
 
 # DB params
 define('DB_HOST', 'localhost');
-define('DB_USER', 'Type USER here');
+define('DB_USER', 'root');
 define('DB_PASS', 'Type password here');
-define('DB_NAME', 'Type database name here');
+define('DB_NAME', 'post-publisher.db');
 
 # App Route - define app directory as a constant
 define('APPROOT', dirname(dirname(__FILE__)));
 # URL Root (from the public folder of project)
-define('URLROOT', 'http://localhost/mvc/public');
+define('URLROOT', 'http://localhost/post-publisher/public');
 # Site Name
 define('SITENAME', 'Post Publisher');

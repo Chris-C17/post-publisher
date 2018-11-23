@@ -19,7 +19,7 @@ class PagesController extends BaseController
     {
         # Using a pages directory in view so need to load pages/index
         $data = [
-            'title' => 'Welcome!',
+            'title' => 'Post Publisher!',
         ];
 
         $this->view('pages/index', $data);
