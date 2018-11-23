@@ -1,5 +1,4 @@
 <script src="<?php echo URLROOT; ?>/js/main.js"></script>
-<?php echo APPROOT; ?>
-<p>Hello from body</p>
+<p>Hello from body in footer</p>
 </body>
 </html>

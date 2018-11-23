@@ -6,6 +6,12 @@
  * Time: 16:56
  */
 
+# DB params
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '123456');
+define('DB_NAME', 'mvc.db');
+
 # App Route - define app directory as a constant
 define('APPROOT', dirname(dirname(__FILE__)));
 # URL Root (from the public folder of project)
