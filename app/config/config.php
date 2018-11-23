@@ -8,9 +8,9 @@
 
 # DB params
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '123456');
-define('DB_NAME', 'mvc.db');
+define('DB_USER', 'Type USER here');
+define('DB_PASS', 'Type password here');
+define('DB_NAME', 'Type database name here');
 
 # App Route - define app directory as a constant
 define('APPROOT', dirname(dirname(__FILE__)));

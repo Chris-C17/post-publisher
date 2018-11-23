@@ -18,10 +18,6 @@ class CoreController
 
     public function __construct()
     {
-//        print "<pre>";
-//        print_r($this->getUrl());
-//        print "</pre>";
-
         $url = $this->getUrl();
 
         # Look in controllers for first index/value - remember this file
@@ -36,8 +32,7 @@ class CoreController
         // Require the controller (The default controller needs to exist for no errors)
         require_once '../app/controllers/' . $this->currentController . '.php';
 
-        # Instantiate Controller Class (I think this is tight-coupling and dependency
-        # injection should be used here instead?)
+        # Instantiate Controller Class
         $this->currentController = new $this->currentController;
 
         # Check for 2nd part (method) of URL
@@ -62,7 +57,7 @@ class CoreController
 
             }
 
-            # Adding an else statement because .htaccess doesn't work and I need the
+            # Adding an else statement because .htaccess isn't working and I need the
             # default controller, method and parameters to be called
         } else { call_user_func_array(
             [$this->currentController, $this->currentMethod],
@@ -72,14 +67,14 @@ class CoreController
     }
 
     # Note .htaccess isn't working so I need full url to public/ then ?url=
-    # http://localhost/mvc/public/index.php?url=chris/about url[0] = Chris (Controller)
+    # http://localhost/mvc/public/index.php?url=Pages/about url[0] = Pages (Controller)
     # ad url[1] = about (method), url[2+] = params
-    # or from public http://localhost/mvc/public/?url=chris
+    # or from public http://localhost/mvc/public/?url=Pages
     public function getUrl()
     {
         if(isset($_GET['url']))
         {
-            # Not sure what rtrim is doing (doesn't seem to be doing anything)
+            # trim url
             $url = rtrim($_GET["url"], "/");
             #sanitize so URL doesn't have any characters it shouldn't have
             $url = filter_var($url, FILTER_SANITIZE_URL);

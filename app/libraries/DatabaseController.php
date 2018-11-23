@@ -22,8 +22,10 @@ class DatabaseController
     {
         //# Set DSN (mySQL)
         //$dsn = 'mysql:host=' . $host. ';dbname=' . $dbname;
+
         # Set DSN (SQLite)
         $dsn = 'sqlite:' . $this->dbname;
+
 //        # Create options to check for open DB connections and set the ERRMODE (MySQL)
 //        $options = array(
 //            PDO::ATTR_PERSISTENT => true,

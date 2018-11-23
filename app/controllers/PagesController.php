@@ -11,19 +11,15 @@ class PagesController extends BaseController
 {
     public function __construct()
     {
-        $this->postModel = $this->model('Post');
     }
 
     # Need an index method if setting the params outside of if statement that checks
     # for a method in URL (array element[1])
     public function index()
     {
-        $posts = $this->postModel->getPosts();
-
         # Using a pages directory in view so need to load pages/index
         $data = [
             'title' => 'Welcome!',
-            'posts' => $posts
         ];
 
         $this->view('pages/index', $data);

@@ -13,8 +13,7 @@ class BaseController
         # Require model file
         require_once '../app/models/' . $model . '.php';
 
-        # Instantiate model (again I think this is tight coupling and dependency injection
-        # should be used?)
+        # Instantiate model
         return new $model();
     }
 
