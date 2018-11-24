@@ -18,3 +18,5 @@ define('APPROOT', dirname(dirname(__FILE__)));
 define('URLROOT', 'http://localhost/post-publisher/public');
 # Site Name
 define('SITENAME', 'Post Publisher');
+# App Version
+define('APPVERSION', '1.0.0');
