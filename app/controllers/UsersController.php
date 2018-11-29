@@ -11,6 +11,7 @@ class UsersController extends BaseController
     # load model
     public function __construct()
     {
+        $this->userModel = $this->model('User');
 
     }
 
@@ -39,6 +40,11 @@ class UsersController extends BaseController
             # Validate email
             if(empty($data['email'])) {
                 $data['email_err'] = 'Please enter email';
+            } else {
+                # check email
+                if ($this->userModel->findUserByEmail($data['email'])) {
+                    $data['email_err'] = 'This email has already been registered';
+                }
             }
 
             # Validate name

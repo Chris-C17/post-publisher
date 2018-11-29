@@ -97,7 +97,9 @@ class DatabaseController
         return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    # Get row count
+    # Get row count - I don't think this function works with SQLite
+    # (might need to implement different code)
+    # https://stackoverflow.com/questions/883365/row-count-with-pdo
     public function rowCount()
     {
         return $this->stmt->rowCount();
