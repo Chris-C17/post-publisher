@@ -72,7 +72,20 @@ class UsersController extends BaseController
             if(empty($data['email_err']) && empty($data['name_err'])
                 && empty($data['password_err']) && empty($data['confirm_password_err'])){
                 # Validated
-                die('success');
+
+                # Hash Password
+                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+                # Register User
+                if($this->userModel->register($data))
+                {
+                    # Redirect to login page (good reason to create a helper function)
+//                    header('location: ' . URLROOT . "/?url=users/login");
+                    redirect('users/login');
+                } else {
+                    die('something went wrong');
+                }
+
             } else {
                 # Load view with errors
                 $this->view('users/register', $data);
