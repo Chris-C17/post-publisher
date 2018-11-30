@@ -152,12 +152,12 @@ class UsersController extends BaseController
             if(empty($data['email_err']) && empty($data['password_err'])){
                 # Validated
                 # Check and set logged user
-                $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+                $loggedInUser = $this->userModel->loginUser($data['email'], $data['password']);
 
                 if($loggedInUser)
                 {
-                    # Create Session Variable
-                    die('Logging in...');
+                    # Creating Session (logged in)
+                    $this->createUserSession($loggedInUser);
                 } else {
                     # re-render form and return password error
                     $data['password_err'] = 'Incorrect password';
@@ -182,6 +182,36 @@ class UsersController extends BaseController
 
             # Load View (form) and pass in data
             $this->view('users/login', $data);
+        }
+    }
+
+    # Takes in $row from loginUser() function in model User.php then sets $row to $loggedInUser
+    # in login() function above, then calls this function passing in $loggedInUser as $user
+    public function createUserSession($user)
+    {
+        $_SESSION['user_id'] = $user->id;
+        $_SESSION['user_name'] = $user->name;
+        $_SESSION['user_email'] = $user->email;
+        redirect('pages/index');
+    }
+
+    # logout and remove session variables
+    public function logout()
+    {
+        unset($_SESSION['user_id']);
+        unset($_SESSION['user_name']);
+        unset($_SESSION['user_email']);
+        session_destroy();
+        redirect('users/login');
+    }
+
+    # Check to see if user is logged in
+    public function isLoggedIn()
+    {
+        if(isset($_SESSION['user_id'])){
+            return true;
+        } else {
+            return false;
         }
     }
 }

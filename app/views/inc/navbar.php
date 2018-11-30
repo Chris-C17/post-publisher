@@ -24,6 +24,13 @@
             </ul>
 
             <ul class="navbar-nav ml-auto">
+                <!-- If $_SESSION variable is set then have a logout button-->
+                <?php if(isset($_SESSION['user_id'])) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo URLROOT; ?>/?url=users/logout">Logout</a>
+                    </li>
+                <!-- Otherwise have login and register buttons -->
+                <?php else : ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo URLROOT; ?>/?url=users/register">Register</a>
                 </li>
@@ -31,7 +38,7 @@
                     <a class="nav-link" href="<?php echo URLROOT; ?>/?url=users/login">Login</a>
                 </li>
             </ul>
-
+            <?php endif; ?>
         </div>
     </div>
 </nav>

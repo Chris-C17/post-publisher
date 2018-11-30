@@ -36,7 +36,7 @@ class User
     }
 
     # Login User
-    public function login($email, $password)
+    public function loginUser($email, $password)
     {
         $this->db->query('SELECT * FROM users WHERE email = :e');
 
