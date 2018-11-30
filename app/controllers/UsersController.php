@@ -68,18 +68,19 @@ class UsersController extends BaseController
                 }
             }
 
-            # Make sure errors are empty
+            # Make sure errors are empty then encrypt password and register user
             if(empty($data['email_err']) && empty($data['name_err'])
                 && empty($data['password_err']) && empty($data['confirm_password_err'])){
-                # Validated
 
+                # Validated
                 # Hash Password
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
                 # Register User
                 if($this->userModel->register($data))
                 {
-                    # Redirect to login page (good reason to create a helper function)
+                    flash('register_success', 'Successfully registered! You can now login');
+                    # Redirect to login page (using a redirect helper function)
 //                    header('location: ' . URLROOT . "/?url=users/login");
                     redirect('users/login');
                 } else {

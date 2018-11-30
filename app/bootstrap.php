@@ -11,6 +11,7 @@ require_once 'config/config.php';
 
 # Load Helpers
 require_once 'helpers/url_helper.php';
+require_once 'helpers/session_helper.php';
 
 //# Load Libraries (not case sensitive)
 //require_once 'libraries/CoreController.php';
