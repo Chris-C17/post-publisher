@@ -154,6 +154,7 @@ class UsersController extends BaseController
                 # Check and set logged user
                 $loggedInUser = $this->userModel->loginUser($data['email'], $data['password']);
 
+                # If User is logged, createUserSession (variables) & redirects to pages/index
                 if($loggedInUser)
                 {
                     # Creating Session (logged in)
@@ -192,7 +193,7 @@ class UsersController extends BaseController
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_name'] = $user->name;
         $_SESSION['user_email'] = $user->email;
-        redirect('pages/index');
+        redirect('posts/index');
     }
 
     # logout and remove session variables
@@ -203,15 +204,5 @@ class UsersController extends BaseController
         unset($_SESSION['user_email']);
         session_destroy();
         redirect('users/login');
-    }
-
-    # Check to see if user is logged in
-    public function isLoggedIn()
-    {
-        if(isset($_SESSION['user_id'])){
-            return true;
-        } else {
-            return false;
-        }
     }
 }
