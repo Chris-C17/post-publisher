@@ -6,8 +6,15 @@
  * Time: 15:38
  */
 
-class PostsController
+class PostsController extends BaseController
 {
+    public function index()
+    {
+        $data = [];
+
+        $this->view('posts/index', $data);
+    }
+
     public function __construct()
     {
 //        echo "Posts loaded";
