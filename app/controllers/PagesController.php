@@ -17,6 +17,10 @@ class PagesController extends BaseController
     # for a method in URL (array element[1])
     public function index()
     {
+        if(isLoggedIn()) {
+            redirect('posts');
+        }
+
         # Using a pages directory in view so need to load pages/index
         $data = [
             'title' => 'Post Publisher!',

@@ -6,5 +6,4 @@
         </div>
     </div>
 <?php
-echo "Hello " . $_SESSION['user_name'];
  require APPROOT . "/views/inc/footer.php"; ?>
