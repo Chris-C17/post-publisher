@@ -36,6 +36,16 @@ class PostsController extends BaseController
         $this->view('posts/index', $data);
     }
 
+    public function add()
+    {
+        $data = [
+            'title' => '',
+            'body' => '',
+        ];
+
+        $this->view('posts/add', $data);
+    }
+
     public function myPage()
     {
 

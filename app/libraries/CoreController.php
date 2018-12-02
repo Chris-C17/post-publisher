@@ -67,7 +67,8 @@ class CoreController
     }
 
     # Note .htaccess isn't working so I need full url to public/ then ?url=
-    # http://localhost/mvc/public/index.php?url=Pages/about url[0] = Pages (Controller)
+    # http://localhost/mvc/public/index.php
+    # ?url=Pages/about url[0] = Pages (Controller)
     # ad url[1] = about (method), url[2+] = params
     # or from public http://localhost/mvc/public/?url=Pages
     public function getUrl()
