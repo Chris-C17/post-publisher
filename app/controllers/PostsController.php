@@ -88,6 +88,18 @@ class PostsController extends BaseController
         }
     }
 
+    # show needs to pass in an id (of the post) - an id of 3 has /?url=posts/show/3
+    public function show($id) {
+
+        $post = $this->postModel->getPostById($id);
+
+        $data = [
+            'post' => $post
+        ];
+
+        $this->view('posts/show', $data);
+    }
+
     public function myPage()
     {
 

@@ -37,6 +37,19 @@ class Post
         return $results;
     }
 
+    public function getPostById($id) {
+        $this->db->query('SELECT * FROM posts WHERE id = :id');
+        $this->db->bind(':id', $id);
+
+        $row = $this->db->single();
+
+        echo "<pre>";
+        print_r($row);
+        echo "<pre>";
+
+        return $row;
+    }
+
     public function addPost($data) {
         $this->db->query("INSERT INTO posts (title, body, user_id) VALUES (:t, :b, :u)");
 
