@@ -19,8 +19,9 @@ class PostsController extends BaseController
         if(!isLoggedIn()) {
             redirect('users/login');
         }
-
+        # Load Post and User model in constructor so it can be used everywhere
         $this->postModel = $this->model('Post');
+        $this->userModel = $this->model('User');
 
     }
 
@@ -92,9 +93,11 @@ class PostsController extends BaseController
     public function show($id) {
 
         $post = $this->postModel->getPostById($id);
+        $user = $this->userModel->getUserById($post->user_id);
 
         $data = [
-            'post' => $post
+            'post' => $post,
+            'user' => $user
         ];
 
         $this->view('posts/show', $data);

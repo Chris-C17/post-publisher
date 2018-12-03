@@ -75,4 +75,24 @@ class User
             return false;
         }
     }
+
+    # Get user by ID
+    public function getUserById($id)
+    {
+//        # If you just want a count can use this
+//        $this->db->query('SELECT COUNT(*) FROM users WHERE email = :e');
+
+        $this->db->query('SELECT * FROM users WHERE id = :id');
+
+        #Bind Value
+        $this->db->bind(':id', $id);
+
+        $row = $this->db->single();
+
+        echo "<pre>";
+        print_r($row);
+        echo "</pre>";
+
+        return $row;
+    }
 }
