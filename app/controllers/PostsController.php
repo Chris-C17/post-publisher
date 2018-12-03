@@ -38,12 +38,54 @@ class PostsController extends BaseController
 
     public function add()
     {
-        $data = [
-            'title' => '',
-            'body' => '',
-        ];
+        # Check for POST
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        $this->view('posts/add', $data);
+            # Process form
+            # Sanitize POST array
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data = [
+                'title' => trim($_POST['title']),
+                'body' => trim($_POST['body']),
+                'user_id' => $_SESSION['user_id'],
+                'title_err' => '',
+                'boyd_err' => '',
+            ];
+
+            # Validate Title
+            if(empty($data['title'])) {
+                $data['title_err'] = 'Please enter a title';
+            }
+
+            # Validate Body
+            if(empty($data['body'])) {
+                $data['body_err'] = 'Please enter text in the body';
+            }
+
+            #Ensure errors are empty
+            if(empty($data['title_err']) && empty($data['body_err'])) {
+                # Validated, send data to database?
+                if($this->postModel->addPost($data)) {
+                    flash('post_message', 'Post Added');
+                    redirect('posts');
+                } else {
+                    die('Something went wrong');
+                }
+
+            } else {
+                # load view with errors
+                $this->view('posts/add', $data);
+            }
+
+        } else {
+            $data = [
+                'title' => '',
+                'body' => '',
+            ];
+
+            $this->view('posts/add', $data);
+        }
     }
 
     public function myPage()
