@@ -34,8 +34,4 @@
         </div>
     <?php endforeach; ?>
 
-<pre>
-    <?php print_r($data['posts']); ?>
-</pre>
-
 <?php require APPROOT . "/views/inc/footer.php"; ?>

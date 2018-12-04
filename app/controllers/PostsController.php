@@ -89,6 +89,70 @@ class PostsController extends BaseController
         }
     }
 
+    public function edit($id)
+    {
+        # Check for POST
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            # Process form
+            # Sanitize POST array
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            # Need to pass in $id in data so it can be passed into updatePost()
+            $data = [
+                'id' => $id,
+                'title' => trim($_POST['title']),
+                'body' => trim($_POST['body']),
+                'user_id' => $_SESSION['user_id'],
+                'title_err' => '',
+                'boyd_err' => '',
+            ];
+
+            # Validate Title
+            if(empty($data['title'])) {
+                $data['title_err'] = 'Please enter a title';
+            }
+
+            # Validate Body
+            if(empty($data['body'])) {
+                $data['body_err'] = 'Please enter text in the body';
+            }
+
+            # Ensure errors are empty before updating post
+            if(empty($data['title_err']) && empty($data['body_err'])) {
+                # Validated, send data to database?
+                if($this->postModel->updatePost($data)) {
+                    flash('post_message', 'Post Updated');
+                    redirect('posts');
+                } else {
+                    die('Something went wrong');
+                }
+
+            } else {
+                # load view with errors
+                $this->view('posts/edit', $data);
+            }
+
+        } else {
+            # Get existing post from model
+            $post = $this->postModel->getPostById($id);
+
+            # Only allow owner of post to access view/edit. Redirect user if not owner.
+            if($post->user_id != $_SESSION['user_id']) {
+                redirect('posts');
+            }
+
+            $data = [
+                'id' => $id,
+                'title' => $post->title,
+                'body' => $post->body,
+            ];
+
+            # Load view for editing post
+            $this->view('posts/edit', $data);
+        }
+    }
+
     # show needs to pass in an id (of the post) - an id of 3 has /?url=posts/show/3
     public function show($id) {
 
@@ -103,8 +167,7 @@ class PostsController extends BaseController
         $this->view('posts/show', $data);
     }
 
-    public function myPage()
-    {
+    public function delete() {
 
     }
 }

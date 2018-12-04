@@ -61,4 +61,20 @@ class Post
             return false;
         }
     }
+
+    public function updatePost($data) {
+        $this->db->query("UPDATE posts SET title = :t, body = :b WHERE id = :id");
+
+        # Bind Values
+        $this->db->bind(':id', $data['id']);
+        $this->db->bind(':t', $data['title']);
+        $this->db->bind(':b', $data['body']);
+
+        # Execute
+        if($this->db->execute()){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
