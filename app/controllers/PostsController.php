@@ -167,7 +167,23 @@ class PostsController extends BaseController
         $this->view('posts/show', $data);
     }
 
-    public function delete() {
+    public function delete($id) {
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            # Get existing post from model
+            $post = $this->postModel->getPostById($id);
 
+            # Only allow owner of post to access view/delete. Redirect user if not owner.
+            if($post->user_id != $_SESSION['user_id']) {
+                redirect('posts');
+            }
+            if($this->postModel->deletePost($id)) {
+                flash('post_message', 'Post deleted');
+                redirect('posts');
+            } else {
+                die('Something went wrong');
+            }
+        } else {
+            redirect('posts');
+        }
     }
 }

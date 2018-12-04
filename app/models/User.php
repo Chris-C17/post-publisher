@@ -89,10 +89,6 @@ class User
 
         $row = $this->db->single();
 
-        echo "<pre>";
-        print_r($row);
-        echo "</pre>";
-
         return $row;
     }
 }

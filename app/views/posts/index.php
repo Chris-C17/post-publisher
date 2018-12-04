@@ -1,6 +1,6 @@
 <?php require APPROOT . "/views/inc/header.php"; ?>
 
-    <!-- flash message for post added -->
+    <!-- flash message for post added, updated or deleted -->
     <?php flash('post_message'); ?>
 
     <div class="row mb-3">

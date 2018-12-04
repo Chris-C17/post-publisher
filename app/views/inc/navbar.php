@@ -27,6 +27,9 @@
                 <!-- If $_SESSION variable is set then have a logout button-->
                 <?php if(isset($_SESSION['user_id'])) : ?>
                     <li class="nav-item">
+                        <a class="nav-link" href="#"><?php echo $_SESSION['user_name']; ?></a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="<?php echo URLROOT; ?>/?url=users/logout">Logout</a>
                     </li>
                 <!-- Otherwise have login and register buttons -->
